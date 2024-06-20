@@ -19,8 +19,8 @@ const userSchema = Schema({
 
     },
     phoneNumber: {
-        type: Number,
-        required: [true,"Please provide a valid phone number"];
+        type: String,
+        required: [true,"Please provide a valid phone number"],
     },
     password:{
         type: String,
@@ -39,7 +39,6 @@ const userSchema = Schema({
     },
 });
 
-const User = mongoose.model("User",userSchema);
 
 //hashing or encryption for a password
 userSchema.pre("save", async function(next){
@@ -55,6 +54,8 @@ userSchema.methods.comparePassword = async function(enteredPassword){
 };
 
 //generating a jwt token for authorization
-userSchema.methods.getJWTToken = ()=>{
+userSchema.methods.getJWTToken = function(){
     return jwt.sign({id: this._id},process.env.JWT_SECRET_KEY,{expiresIn:process.env.JWT_EXPIRE});
-}
+};
+
+export const User = mongoose.model("User",userSchema);
