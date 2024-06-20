@@ -27,6 +27,7 @@ const userSchema = Schema({
         required: [true,"Please provide your password"],
         minLength:[8,"Please provide a password with atleast 8 characters"],
         maxLength:[32,"Please provide a password with atmost 32 characters"],
+        select: false,
     },
     role:{
         type: String,
