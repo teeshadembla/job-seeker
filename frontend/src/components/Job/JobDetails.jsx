@@ -33,7 +33,7 @@ const JobDetails = () =>{
                     </p>
 
                     <p>
-                        Categiry: <span>{job.category}</span>
+                        Category: <span>{job.category}</span>
                     </p>
 
                     <p>

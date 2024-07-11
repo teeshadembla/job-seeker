@@ -29,7 +29,7 @@ const PostJob = () =>{
             setFixedSalary("");
         }
 
-        await axios.post("http://localhost:4000/api/v1/job/newJob", fixedSalary.length >=4 ? (title, category,country, city, location, fixedSalary):(title, category,country, city, location, salaryFrom, salaryTo), 
+        await axios.post("http://localhost:4000/api/v1/job/newJob", fixedSalary.length >=4 ? {title, category,country, city, location, fixedSalary}:{title, category,country, city, location, salaryFrom, salaryTo}, 
         {
             withCredentials: true ,
             headers: {
@@ -125,7 +125,7 @@ const PostJob = () =>{
 
                     <div className="salary_wrapper">
                         <select value={salaryType} onChange={(e)=>setSalaryType(e.target.value)}>
-                            <option value="default"></option>
+                            <option value="default">Select Salary type</option>
                             <option value="Fixed Salary">Fixed Salary</option>
                             <option value="Ranged Salary">Ranged Salary</option>
                         </select>

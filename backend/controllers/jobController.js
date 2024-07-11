@@ -53,8 +53,7 @@ export const getMyJobs = catchAsyncError(async(req,res,next)=>{
     if(role === "Job Seeker"){
         return next(new ErrorHandler("You must be registered as an employer to post a new Job",400));
     }
-    const {id} = req.user;
-    const myJobs = await Job.find({postedBy :id});
+    const myJobs = await Job.find({postedBy : req.user._id});
     console.log(myJobs);
     res.status(200).json({
         success:true,
